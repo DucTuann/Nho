@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Text with Color Change</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* لإخفاء أي تمرير للصفحة */
+            background-color: black;
+        }
+
+        #animatedText {
+            position: fixed;
+            top: 0%; /* تعديل المسافة من الأعلى */
+            left: 100%;
+            white-space: nowrap;
+            font-size: 50px; /* تكبير حجم النص */
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+            animation: slide 10s linear infinite; /* حركة الانزلاق للنص */
+        }
+
+        @keyframes slide {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+
+        .char {
+            display: inline-block;
+            animation: colorChange 1s infinite alternate; /* تسريع تغيير الألوان */
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: green; }
+            50% { color: blue; }
+            75% { color: yellow; }
+            100% { color: purple; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="animatedText">
+        <span class="char">T</span>
+        <span class="char">r</span>
+        <span class="char">u</span>
+        <span class="char">n</span>
+        <span class="char">g</span>
+        <span class="char">n</span>
+        <span class="char">h</span>
+        <span class="char">o</span>
+        <span class="char">Ios🍎</span>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #282c34; /* Màu nền Trắng */
+            color: white; /* Màu chữ trắng */
+            text-align: center; /* Căn giữa chữ */
+            padding: 100px; /* Khoảng cách trên và dưới */
+            position: relative; /* Để chứa các bông tuyết */
+            overflow: hidden; /* Ẩn bông tuyết ra ngoài */
+            animation: fadeIn 1s; /* Hiệu ứng xuất hiện */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .menu {
+            display: inline-block; /* Hiển thị menu theo dạng khối */
+            background-color: rgba(0, 0, 0, 0.8); /* Nền menu trong suốt */
+            padding: 30px; /* Khoảng cách bên trong menu */
+            border-radius: 10px; /* Bo góc menu */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Đổ bóng cho menu */
+            transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển đổi cho menu */
+        }
+
+        .menu:hover {
+            transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5); /* Đổ bóng phát sáng khi hover */
+        }
+
+        .menu h1 {
+            margin-bottom: 40px; /* Khoảng cách dưới tiêu đề */
+            font-size: 2.5em; /* Kích thước chữ lớn hơn */
+        }
+
+        .menu a {
+            display: block; /* Hiển thị từng mục menu trên một dòng */
+            padding: 15px; /* Khoảng cách bên trong từng mục */
+            margin: 10px 0; /* Khoảng cách giữa các mục */
+            color: #61dafb; /* Màu chữ cho các mục menu */
+            text-decoration: none; /* Xóa gạch chân */
+            border-radius: 5px; /* Bo góc các mục */
+            transition: background-color 0.3s, transform 0.3s, color 0.3s; /* Hiệu ứng chuyển đổi màu nền và phóng to */
+            position: relative; /* Để thực hiện hiệu ứng pseudo-element */
+        }
+
+        .menu a:hover {
+            background-color: rgba(97, 218, 251, 0.5); /* Màu nền khi hover */
+            color: #ffffff; /* Màu chữ trắng khi hover */
+            transform: translateY(-3px); /* Hiệu ứng nâng lên khi hover */
+        }
+
+        .menu a::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px; /* Chiều cao của hiệu ứng ánh sáng */
+            background-color: #61dafb; /* Màu ánh sáng */
+            transform: scaleX(0); /* Bắt đầu với kích thước bằng 0 */
+            transition: transform 0.3s; /* Hiệu ứng chuyển đổi cho hiệu ứng ánh sáng */
+        }
+
+        .menu a:hover::after {
+            transform: scaleX(1); /* Kích hoạt hiệu ứng ánh sáng khi hover */
+        }
+
+        .menu a:active {
+            transform: translateY(1px); /* Hiệu ứng nhấn xuống khi click */
+        }
+
+        /* CSS cho bông tuyết */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1.5em; /* Kích thước bông tuyết */
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <h1>Menu Chức Năng</h1>
+        <a href="#start" onclick="doisungnhanh()">HEATRICK LOCK</a>
+        <a href="#instructions" onclick="fixrung()">FIX RUNG</a>
+        <a href="#settings" onclick="nhaytam()">NHẠY TÂM</a>
+        <a href="#statistics" onclick="buffman()">BUFF MÀN</a>
+        <a href="#exit" onclick="file()">FILE 78%</a>
+    </div>
+
+    <script>
+        // Hàm để tạo bông tuyết
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄'; // Biểu tượng bông tuyết
+
+            // Đặt bông tuyết ở vị trí ngẫu nhiên trên màn hình
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 3 + 's'; // Thời gian rơi ngẫu nhiên
+
+            document.body.appendChild(snowflake);
+
+            // Xóa bông tuyết sau khi nó đã rơi
+            setTimeout(() => {
+                snowflake.remove();
+            }, 6000);
+        }
+
+        // Tạo bông tuyết mỗi giây
+        setInterval(createSnowflake, 1000);
+
+        function doisungnhanh() {
+          alert("Đang bật đổi súng nhanh!");
+          alert("Đã bật đổi súng nhanh | vui lòng nhấn Ok");
+h5gg.clearResults();
+h5gg.searchNumber('72340173878198272', 'I64', '0x100000000', '0x130000000');
+h5gg.editAll('72340172821233664', 'I64');
+            
+            // Logic để bắt đầu trò chơi có thể được thêm ở đây
+        }
+
+        
+    </script>
+
+</body>
+</html>
